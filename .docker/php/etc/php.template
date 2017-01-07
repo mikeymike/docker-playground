@@ -1,0 +1,3 @@
+memory_limit = ${PHP_MEMORY_LIMIT};
+session.auto_start=off;
+suhosin.session.cryptua=off;

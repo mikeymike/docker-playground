@@ -1,0 +1,8 @@
+# Ignore .docker to prevent it being copied with COPY ./
+.docker
+
+# Unignore these to allow docker build to copy them in
+!.docker/php
+!.docker/nginx
+
+.git
