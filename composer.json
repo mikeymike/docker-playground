@@ -58,5 +58,8 @@
         "xdebug-loopback": "sudo ifconfig lo0 alias 10.254.254.254",
 
         "composer-update": "docker-compose exec php composer update -o"
+    },
+    "config": {
+        "process-timeout": 0
     }
 }
