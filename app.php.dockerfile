@@ -43,7 +43,7 @@ RUN [ "$BUILD_ENV" != "$PROD_ENV" ] \
     && printf "extension=blackfire.so\nblackfire.agent_socket=tcp://blackfire:8707\n" > $PHP_INI_DIR/conf.d/blackfire.ini; \
     true
 
-# xdebug and PHP configuration files
+# Xdebug and PHP configuration files
 COPY .docker/php/etc/custom.template .docker/php/etc/xdebug.template /usr/local/etc/php/conf.d/
 
 # Copy in Entrypoint file

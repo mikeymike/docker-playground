@@ -31,7 +31,7 @@ foreach ($containers as $container) {
     if (!$allowDelete) {
         echo "\033[31m Not running rm -rf $containerPath \033[0m \n";
         echo "\033[31m Run this manually in the container instead if you really want to... \033[0m \n";
-        echo "\033[31m docker-compose exec $container rm -rf /var/www/$containerPath \033[0m \n";
+        echo "\033[31m docker exec $container rm -rf /var/www/$containerPath \033[0m \n";
         continue;
     }
 
