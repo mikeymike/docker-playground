@@ -1,33 +1,31 @@
 version: '2'
 
-volumes:
-    db-data:
+#volumes:
+#    db-data:
 
 services:
     nginx:
         container_name: nginx
+        image: mikeymike/learning-docker-nginx
         build:
             context: ./
-            dockerfile: dockerfile.web
+            dockerfile: app.nginx.dockerfile
         working_dir: /var/www
         ports:
             - "80:80"
-        env_file:
-            - ./.docker/production.env
 
     php:
         container_name: php
+        image: mikeymike/learning-docker-php
         build:
             context: ./
-            dockerfile: dockerfile.app
+            dockerfile: app.php.dockerfile
         volumes:
             - "${HOME}/.composer:/root/.composer"
             - "${HOME}/.ssh:/root/.ssh"
         working_dir: /var/www
         ports:
             - 9000
-        env_file:
-            - ./.docker/production.env
 
 #    db:
 #        container_name: m2-docker-test-db

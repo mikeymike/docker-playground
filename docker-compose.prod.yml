@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+    nginx:
+        env_file:
+            - ./.docker/production.env
+
+    php:
+        env_file:
+            - ./.docker/production.env

@@ -2,10 +2,6 @@
 
 // 1 way sync script
 
-# Ensure only the user stops the watcher
-// TODO: this doesn't work for shit
-set_time_limit(0);
-
 # Containers and paths to listen on, relative to project root
 $containers = [
     'nginx' => ['pub'],
@@ -40,5 +36,5 @@ foreach ($containers as $container) {
     }
 
     echo "\033[31m x $containerPath > $container \033[0m \n";
-    `docker-compose exec $container rm -rf /var/www/$containerPath`;
+    `docker exec $container rm -rf /var/www/$containerPath`;
 }

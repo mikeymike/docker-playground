@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+    nginx:
+        env_file:
+            - ./.docker/local.env
+
+    php:
+        env_file:
+            - ./.docker/local.env
+
+    blackfire:
+        image: blackfire/blackfire
+        env_file:
+            - .docker/local.env

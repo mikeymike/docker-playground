@@ -24,24 +24,39 @@
         ],
         "cs": "phpcs -s app/code/Docker --standard=PSR2 --warning-severity=0",
 
+        "cu": [
+            "@composer-update",
+            "@sync"
+        ],
+
         "start": [
             "@build",
             "@up",
             "@watch"
         ],
-
-        "stop": [
-            "@sync",
-            "@down"
+        "start-prod": [
+            "@build-prod",
+            "@up",
+            "@watch"
         ],
 
-        "build": "docker-compose build",
-        "up": "docker-compose up -d",
-        "down": "docker-compose down",
+        "build": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml build",
+        "build-prod": [
+            "docker build -t mikeymike/learning-docker-nginx -f app.nginx.dockerfile --build-arg BUILD_ENV=prod ./",
+            "docker build -t mikeymike/learning-docker-php -f app.php.dockerfile --build-arg BUILD_ENV=prod ./"
+        ],
+
+        "up": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d",
+        "up-prod": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d",
+
+        "stop": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml down",
+        "stop-prod": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml down",
+
         "watch": "fswatch -r ./src ./pub ./composer.json -e '.*__jp*' | xargs -n1 -I{} php .docker/sync.php {}",
         "sync": "docker cp php:/var/www/vendor ./ && docker cp php:/var/www/composer.lock ./",
+
         "xdebug-loopback": "sudo ifconfig lo0 alias 10.254.254.254",
 
-        "cu": "docker-compose exec php composer update -o"
+        "composer-update": "docker-compose exec php composer update -o"
     }
 }
